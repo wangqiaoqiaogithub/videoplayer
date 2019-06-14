@@ -1,0 +1,275 @@
+.container
+    position: fixed
+    width: 100%
+    height: 100%
+    background: #000000
+    color: #fff
+    .video
+        position: relative
+        width: 910px
+        height: 100%
+        margin: 0 auto
+        .audiomain
+            width: 100%
+            height: 100%
+            .audiocontent
+                position: absolute
+                top: 0
+                left: 0
+                right: 0
+                bottom: 0
+                margin: auto
+                height: 580px;
+                background: #ccc
+                -webkit-border-radius: 10px
+                .videop_div
+                    position: absolute
+                    top: 0
+                    left: 0
+                    right: 0
+                    bottom: 0
+                    height: 500px
+                    margin: 20px auto
+                    .videoplayer
+                        display: block
+                        width: 100%
+                        height: 100%
+                        outline: none
+                        // mix-blend-mode: screen//视屏背景混合后成为透明
+                        -webkit-object-fit: fill//定义视频的标签铺满整个div
+                        -o-object-fit: fill
+                        -ms-object-fit: fill
+                        object-fit: fill   
+                .videocontrol
+                    position: absolute
+                    display: inline-block
+                    width: 100%
+                    bottom: 0%
+                    left: 0
+                    height: 50px
+                    background: #3d3d3d
+                    .video_top:hover
+                        #vthead
+                            width: 15px
+                            height: 15px
+                            border: 1px solid #fff
+                    .video_top
+                        position: relative
+                        top: -10px
+                        height: 10px
+                        .video_progress
+                            position: absolute
+                            top: 0
+                            left: 0
+                            width: 100%
+                            height: 100%
+                            z-index: 99
+                            #vtprogress
+                                position: absolute
+                                top: 0
+                                left: 0
+                                width: 0px
+                                height: 100%
+                                background: #6b6a6a     
+                                z-index: 1                       
+                        #vthead
+                            position: absolute
+                            top: 0
+                            left: 0
+                            bottom: 0
+                            right: 0
+                            margin: auto 0
+                            width: 0px
+                            height: 0px
+                            border-radius: 10px
+                            background: #6b6a6a
+                            z-index: 1
+                        #alprogress
+                            position: absolute
+                            top: 0
+                            left: 0
+                            width: 0px
+                            height: 100%
+                            background: #eae9e9
+                            z-index: 0
+                    .video_bottom
+                        position: absolute
+                        top: 0
+                        left: 0
+                        width: 100%
+                        z-index: 0
+                        .video_btn
+                            width: 10%
+                            height: 100%
+                            float: left 
+                            #vbtn
+                                cursor: pointer
+                                width: 100%
+                                height: 100%
+                                display: block
+                                font-size: 20px
+                                text-align: center
+                                line-height: 2.5em
+                        .video_time
+                            float: left 
+                            width: 20%
+                            height: 100%
+                            background: #ccc
+                            margin-left: 5%
+                            height: 50px
+                            #datetime
+                                float: left
+                                height: 100%
+                                display: inline-block
+                                font-size: 18px
+                                text-align: center
+                                line-height: 3rem
+                                margin-left: 30%
+                            .vseparator
+                                float: left
+                                height: 100%
+                                display: inline-block
+                                font-size: 18px
+                                text-align: center
+                                line-height: 3rem
+                            .vduration
+                                float: left
+                                height: 100%
+                                display: inline-block
+                                font-size: 18px
+                                text-align: center
+                                line-height: 3rem
+                        .video_speed
+                            position: relative
+                            float: left 
+                            width: 10%
+                            height: 100%
+                            background: #ccc
+                            margin-left: 2%
+                            height: 50px
+                            #v_speed
+                                cursor: pointer
+                                width: 100%
+                                height: 100%
+                                display: block
+                                text-align: center
+                                line-height: 2.9em
+                            .speedshut
+                                display: none!important
+                            .speedopen
+                                display: block!important
+                                //opacity: 1!important
+                            #speedcontrol
+                                display: none
+                                //opacity: 0
+                                position: absolute
+                                top: -8rem
+                                left: 0
+                                background: #000
+                                color: #fff
+                                width: 100%
+                                z-index: 99
+                                .speedul
+                                    text-align: center
+                                    width: 100%
+                                    height: 100%
+                                    font-size: 15px
+                                .speedul>li
+                                    line-height: 2em
+                                .speedul>li:hover
+                                    color: #3d3d3d
+                                    cursor: pointer
+                            
+                        .video_volume
+                            position: relative
+                            float: left
+                            width: 5%
+                            height: 100%
+                            margin-left: 30%
+                            #volume
+                                width: 100%
+                                height: 100%
+                                display: block
+                                font-size: 20px
+                                text-align: center
+                                line-height: 2.5em
+                                cursor: pointer
+                            #vlpanel
+                                display: none
+                                position: absolute
+                                top: -8.5rem
+                                left: 0
+                                width: 40px
+                                height: 8em
+                                background: #000
+                                #volumecontrols
+                                    position: absolute
+                                    top: 0
+                                    bottom: 0
+                                    left: 0
+                                    right: 0
+                                    width: 10px
+                                    height: 100px
+                                    background: #3d3d3d
+                                    margin: auto
+                                    border-radius: 30px
+                                    -webkit-border-radius: 30px
+                                    -moz-border-radius: 30px
+                                    -ms-border-radius: 30px
+                                    -o-border-radius: 30px
+                                    .volumebar
+                                        position: absolute
+                                        top: 0
+                                        left: 0
+                                        width: 100%
+                                        height: 100%
+                                        border-radius: 10px
+                                        -webkit-border-radius: 10px
+                                        -moz-border-radius: 10px
+                                        -ms-border-radius: 10px
+                                        -o-border-radius: 10px
+                                        overflow: hidden
+                                        #vprogress
+                                            position: absolute
+                                            top: 0
+                                            left: 0
+                                            width: 100%
+                                            height: 0
+                                            background: #ccc
+                                    .volumehead
+                                        #vhead
+                                            display: block
+                                            position: absolute;
+                                            bottom: 0px;
+                                            left: -2px;
+                                            width: 15px;
+                                            height: 15px;
+                                            background: #fff;
+                                            transition: all ease 0.35s;
+                                            -webkit-border-radius: 50%;
+                        .video_pinpicture
+                            width: 8%
+                            height: 50px
+                            float: left
+                            margin-left: 2%
+                            #pinpicture
+                                width: 100%
+                                height: 100%
+                                display: block
+                                text-align: center
+                                line-height: 2.9em
+                                cursor: pointer
+                        .video_fullscreen
+                            width: 6%
+                            height: 100%
+                            float: left
+                            margin-left: 2%
+                            #v_fullscreen
+                                cursor: pointer
+                                width: 100%
+                                height: 100%
+                                display: block
+                                font-size: 20px
+                                text-align: center
+                                line-height: 2.5em
+

@@ -1,0 +1,99 @@
+
+
+@media(max-width:768px){
+    .video{
+        width: 95%!important;
+    }
+    .audiocontent{
+        height: 280px!important;
+    }
+    .video_speed{
+        width: 12%!important;
+    }
+    .video_volume{
+        margin-left: 18%!important;
+    }
+    .videop_div{
+        height: 200px!important;
+    }
+    .video_pinpicture{
+        width: 16%!important;
+    }
+    #speedcontrol{
+        top: 3.5rem!important;
+        left: 0!important;
+        background: #ccc!important;
+    }
+    #vlpanel{
+        left: -0.8em!important;
+    }
+    .changetime{
+        font-size: 15px!important;
+        width: 2em!important;
+        margin-left: 20%!important;
+    }
+    .vseparator{
+        font-size: 15px!important;
+        width: .5em!important;
+    }
+    .vduration{
+        font-size: 15px!important;
+        width: 1em!important;
+    }
+}
+@media(max-width:700px){
+    .video{
+        width: 95%!important;
+    }
+    .audiocontent{
+        height: 280px!important;
+    }
+    .video_speed{
+        width: 12%!important;
+    }
+    .video_volume{
+        margin-left: 18%!important;
+    }
+    .videop_div{
+        height: 200px!important;
+    }
+    .video_pinpicture{
+        width: 16%!important;
+    }
+    #speedcontrol{
+        top: 3.5rem!important;
+        left: 0!important;
+        background: #ccc!important;
+    }
+    #vlpanel{
+        left: -0.8em!important;
+    }
+    .changetime{
+        font-size: 15px!important;
+        width: 2rem!important;
+        margin-left: 0%!important;
+    }
+    .vseparator{
+        font-size: 15px!important;
+        width: .5rem!important;
+    }
+    .vduration{
+        font-size: 15px!important;
+        width: 1rem!important;
+    }
+}
+@media(max-width:320px){
+    .changetime{
+        font-size: 14px!important;
+        width: 1.5rem!important;
+        margin-left: 0%!important;
+    }
+    .vseparator{
+        font-size: 14px!important;
+        width: .5rem!important;
+    }
+    .vduration{
+        font-size: 14px!important;
+        width: 1rem!important;
+    }
+}
