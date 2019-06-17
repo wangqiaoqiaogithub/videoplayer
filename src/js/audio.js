@@ -27,6 +27,13 @@
                 element.attachEvent('on'+ type, bound);
                 return bound;
             }
+        },
+        addclass:function(element,className){
+            var classNames = element.className.split(/\s+/);
+
+        },
+        removeClass:function(element,className){
+            var classNames = element.className.split(/\s+/);
         }
     }
     function Videoplayer(
