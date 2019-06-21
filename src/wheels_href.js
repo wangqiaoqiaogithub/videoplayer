@@ -8,6 +8,7 @@ var videoscreen = new Video('#myAudio'/*视频元素Video标签上的id*/,{
     fsicon: 'iconfont iconfullscreen',
     exitfsicon: 'iconfont iconfullscreenexit',
     timebeat: '.changetime',
+    timetotal: '#videoduration',
     pipbtn: '#pinpicture',
     speedbtn: '#v_speed',
     speedlist: '#speedcontrol',
@@ -30,7 +31,9 @@ var videoscreen = new Video('#myAudio'/*视频元素Video标签上的id*/,{
     audiohead: '#vthead',
     aloadprogress: '#alprogress',
     mousevolumedistance: 1,//鼠标点击调节音量时小球偏移量(它的作用是能让小球和滚动条更能凝聚在一起)
-    mouseaprogressdistance: 5//鼠标点击时调节视频进度的时候偏移量(小球更好的凝聚在一起)
+    mouseaprogressdistance: 5,//鼠标点击时调节视频进度的时候偏移量(小球更好的凝聚在一起)
+    audioloadingselect: '#audioloading',//缓存加载视频时的loading选择器(让它去控制别的类名，来控制类名的显示隐藏)
+    loadinghideclass: 'audiol'//视频缓存加载完成后隐藏loading的class(这里必须是字符串的形式)
 })
 console.log(videoscreen);
 /**

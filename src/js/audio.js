@@ -16,6 +16,20 @@
             }
             return target
         },
+        indexOf: function(array, item) {
+            if (array.indexOf) {
+                return array.indexOf(item);
+            } else {
+                var result = -1;
+                for (var i = 0, len = array.length; i < len; i++) {
+                    if (array[i] === item) {
+                        result = i;
+                        break;
+                    }
+                }
+                return result;
+            }
+        },
         addEvent:function(element,type,fn){
             if(document.addEventListener||Window.addEventlistener){
                 element.addEventListener(type,fn,false)
@@ -28,21 +42,39 @@
                 return bound;
             }
         },
-        addclass:function(element,className){
-            var classNames = element.className.split(/\s+/);
-
+        addClass:function(element,className){
+            var elementName = typeof element === "string" ? document.querySelector(element) : element;
+            var classNames = elementName.className.split(/\s+/);
+            if(util.indexOf(classNames, className) == -1){
+                classNames.push(className);
+            }
+            elementName.className = classNames.join('');
         },
         removeClass:function(element,className){
-            var classNames = element.className.split(/\s+/);
+            var elementName = typeof element === "string" ? document.querySelector(element) : element;
+            var classNames = elementName.className.split(/\s+/);
+            var index = util.indexOf(classNames, className);
+            if(index !== -1){
+                classNames.splice(index, 1);
+            }
+            elementName.className = classNames.join('');
+        },
+        addZero:function(num){
+            //添加0函数为获取音频的总时间做准备
+            if(num< 10){
+                return("0"+num)
+            }else{
+                return num;
+            }
         }
     }
     function Videoplayer(
         btn,videoplay,videopause,
-        choicefs,fullscreen,fsicon,exitfsicon,timebeat,pipbtn,speedbtn,
+        choicefs,fullscreen,fsicon,exitfsicon,timebeat,timetotal,pipbtn,speedbtn,
         speedlist,slistclassopen,slistclassshut,slistone,slisttwo,slistthree,
         slistfour,volumebtn,volumemouse,vmuteclass,vmediumclass,vbigclass,vcontrols,
         volumehead,vprogress,apcontrols,audiohead,audioprogress,aloadprogress,mousevolumedistance,
-        mouseaprogressdistance
+        mouseaprogressdistance,audioloadingselect,loadinghideclass
     ){
         this.btn= btn;//绑定播放按钮
         this.videoplay = videoplay;//提供开始播放类名的属性
@@ -52,6 +84,7 @@
         this.fsicon = fsicon;
         this.exitfsicon = exitfsicon;
         this.timebeat = timebeat;//提供时间的类名属性
+        this.timetotal = timetotal;
         this.pipbtn = pipbtn;//提供画中画的类名属性
         this.speedbtn = speedbtn;//提供点击倍速按钮并显示倍速列表的类名属性
         this.speedlist = speedlist;
@@ -75,6 +108,8 @@
         this.aloadprogress = aloadprogress;
         this.mousevolumedistance = mousevolumedistance;
         this.mouseaprogressdistance = mouseaprogressdistance;
+        this.audioloadingselect = audioloadingselect;
+        this.loadinghideclass = loadinghideclass;
     }
     Video.defaultOptions = {
         //提供参数的地方
@@ -86,6 +121,7 @@
         fsicon: this.fsicon,
         exitfsicon: this.exitfsicon,
         timebeat: this.timebeat,
+        timetotal: this.timetotal,//提供获取视频总时间的属性
         pipbtn: this.pipbtn,
         speedbtn: this.speedbtn,
         speedlist: this.speedlist,
@@ -108,7 +144,9 @@
         audioprogress: this.audioprogress,
         aloadprogress: this.aloadprogress,
         mousevolumedistance: this.mousevolumedistance,
-        mouseaprogressdistance: this.mouseaprogressdistance
+        mouseaprogressdistance: this.mouseaprogressdistance,
+        audioloadingselect: this.audioloadingselect,
+        loadinghideclass: this.loadinghideclass
         //这里的this指向为Video
     }
     function Video(name,options){
@@ -132,6 +170,7 @@
         this.fsicon = this.options.fsicon;
         this.exitfsicon = this.options.exitfsicon;
         this.timebeat = this.options.timebeat;//播放时间的类名属性
+        this.timetotal = this.options.timetotal;
         this.pipbtn = this.options.pipbtn;
         this.speedbtn = this.options.speedbtn;
         this.speedlist = this.options.speedlist;
@@ -155,6 +194,8 @@
         this.aloadprogress = this.options.aloadprogress;
         this.mousevolumedistance = this.options.mousevolumedistance;
         this.mouseaprogressdistance = this.options.mouseaprogressdistance;
+        this.audioloadingselect = this.options.audioloadingselect;
+        this.loadinghideclass = this.options.loadinghideclass;
         this.init();
     }
     var proto = Video.prototype = new Videoplayer();
@@ -172,6 +213,7 @@
         this.bindvolume();
         this.bindVideotime();
         this.bindaudiocontrols();
+        this.bindloadingpic();
         //创建init函数为共有方法
         console.log(""+"欢迎使用video.js "+"veision:"+proto.version+"")
     }
@@ -215,8 +257,8 @@
     }
     proto.bindfscreen = function(){
         let fullscreen = this.fullscreen;//获取将要点击的全屏按钮
-        let selectfs = typeof fullscreen === "string"? document.querySelector(fullscreen): fullscreen;
         let fsbtn = this.choicefs;
+        let selectfs = typeof fullscreen === "string"? document.querySelector(fullscreen): fullscreen;
         let selectfsbtn = typeof fsbtn === "string"? document.querySelector(fsbtn): fsbtn;
         let ele = document.documentElement||document||window||document.body;
         util.addEvent(selectfsbtn,"click",function(){
@@ -285,6 +327,7 @@
     proto.bindVideotime = function(){
         let audio = this.name;
         let timebeat = this.options.timebeat;
+        let timetotal = this.options.timetotal;
         let apcontrols = this.apcontrols;
         let ahead = this.audiohead;
         let alprogress = this.aloadprogress; 
@@ -295,6 +338,7 @@
         let alpselect = typeof alprogress === "string"? document.querySelector(alprogress): alprogress;
         let apselect = typeof aprogress === "string"?document.querySelector(aprogress): aprogress;
         let apcselect = typeof apcontrols === "string"?document.querySelector(apcontrols): apcontrols;
+        let ttselect =  typeof timetotal === "string"?document.querySelector(timetotal): timetotal;
         util.addEvent(audio,"canplay",function(){
             audio.canplay=true;//开启canplyaudio属性的作用
         })
@@ -337,6 +381,15 @@
                 changetime.innerHTML=""+clock+":"+minute+":"+cur%60+"";
             }
         })
+        
+        let cur = parseInt(audio.duration);
+        let temp = cur;
+        //用变量来接收一个音频的秒数并取整(228秒)
+        let minute = parseInt(temp/60);//转换成分钟为后面的程序做准备
+        let clock = parseInt(temp/3600);
+        
+        ttselect.innerHTML=""+minute+":"+temp%60+"";
+        //ttselect.innerHTML=""+cur%60+"";
         // audio.addEventListener("ended",function(){
         //     //音频元素当结束播放时触发的函数
         //     aheadselect.style.left=0+"";
@@ -407,6 +460,7 @@
         let vpselect = typeof vprogress === "string"? document.querySelector(vprogress): vprogress;
         let vhselect = typeof volumehead === "string"? document.querySelector(volumehead): volumehead;
         let mapdistance = this.mouseaprogressdistance;
+        
         util.addEvent(vbselect,"mouseover",function(){
             vmselect.style="display: block";
         })
@@ -420,7 +474,6 @@
                 audio.volume = 0.5;
                 vmselect.style="display: block";
                 vbselect.className = vmediumclass+"";
-                console.log(1)
                 onoff = true;
             }
         })
@@ -471,19 +524,22 @@
     }
     proto.bindloadingpic = function(){
         let audio = this.name;
+        let audioloading = this.audioloadingselect;
+        let loadingselect = typeof audioloading === "string"? document.querySelector(audioloading): audioloading;
+        let loadinghide = this.loadinghideclass;
         util.addEvent(audio,"waiting",function(){
             //删除待加载的图标组件
-            
+            util.removeClass(loadingselect,loadinghide);
         })
         util.addEvent(audio,"playing",function(){
             //添加待加载的图标组件
-
+            util.addClass(loadingselect,loadinghide);
         })
         util.addEvent(audio,"loadstart",function(){
             //客户端正在请求数据时删除待加载的图标组件
-            
+            util.removeClass(loadingselect,loadinghide);
         })
-    }
+    }   
     /** 
      * 视频思路:
      * 获取到this.name（视屏来源）,给this.btn添加点击事件(作用点)

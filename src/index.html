@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
         <meta name="renderer" content="webkit">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>wangqiaoqiao</title>
+        <title>video视频播放器</title>
     </head>
     <body>
         <div class="container">
@@ -29,6 +29,11 @@
                                     <div id="alprogress" class="audioloadprogress"></div>
                                 </div>
                                 <!-- 以上为音频的进度条 -->
+                                <!-- 这是加载图片 -->
+                                <div id="audioloading">
+                                    <img class="loadingimg" src="img/loading.gif" alt="">
+                                </div>
+                                <!-- 以上为加载图片 -->
                             </div>
                             <div class="video_bottom">
                                 <!-- 音频的暂停控制按钮 -->
@@ -40,7 +45,7 @@
                                 <div class="video_time clearfix">
                                     <span class="changetime clearfix" id="datetime"></span>
                                     <span class="vseparator clearfix"> / </span>
-                                    <span class="vduration clearfix" id="videoduration">3:48</span>
+                                    <span class="vduration clearfix" id="videoduration"></span>
                                 </div>
                                 <!-- 以上为音频的时间 -->
                                 <!-- 音频的音量 -->
