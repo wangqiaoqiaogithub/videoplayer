@@ -387,9 +387,8 @@
         //用变量来接收一个音频的秒数并取整(228秒)
         let minute = parseInt(temp/60);//转换成分钟为后面的程序做准备
         let clock = parseInt(temp/3600);
-        
         ttselect.innerHTML=""+minute+":"+temp%60+"";
-        console.log(cur)；
+        console.log(1)
         //ttselect.innerHTML=""+cur%60+"";
         // audio.addEventListener("ended",function(){
         //     //音频元素当结束播放时触发的函数
