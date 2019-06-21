@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-## Videoplayer.js
-=======
-# videoplayer
->>>>>>> ceac99d2b909179c90ee71561d43ed51a17a8f4c
+﻿## Videoplayer.js
 >这是一个HMLT5视频播放器原生插件
 ## 介绍
 * 是一个原生无任何依赖项具有封装性的模块化插件
