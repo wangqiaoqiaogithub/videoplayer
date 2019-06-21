@@ -389,6 +389,7 @@
         let clock = parseInt(temp/3600);
         
         ttselect.innerHTML=""+minute+":"+temp%60+"";
+        console.log(cur)；
         //ttselect.innerHTML=""+cur%60+"";
         // audio.addEventListener("ended",function(){
         //     //音频元素当结束播放时触发的函数
