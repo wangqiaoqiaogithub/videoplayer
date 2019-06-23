@@ -58,14 +58,6 @@
                 classNames.splice(index, 1);
             }
             elementName.className = classNames.join('');
-        },
-        addZero:function(num){
-            //添加0函数为获取音频的总时间做准备
-            if(num< 10){
-                return("0"+num)
-            }else{
-                return num;
-            }
         }
     }
     function Videoplayer(
@@ -381,15 +373,16 @@
                 changetime.innerHTML=""+clock+":"+minute+":"+cur%60+"";
             }
         })
-        
-        let cur = parseInt(audio.duration);
-        let temp = cur;
-        //用变量来接收一个音频的秒数并取整(228秒)
-        let minute = parseInt(temp/60);//转换成分钟为后面的程序做准备
-        let clock = parseInt(temp/3600);
-        ttselect.innerHTML=""+minute+":"+temp%60+"";
-        console.log(1)
-        //ttselect.innerHTML=""+cur%60+"";
+        util.addEvent(audio,"loadedmetadata",function(){
+            //当音频成功获取资源是运行以下程序
+            let cur = parseInt(audio.duration);
+            let temp = cur;
+            //用变量来接收一个音频的秒数并取整(228秒)
+            let minute = parseInt(temp/60);//转换成分钟为后面的程序做准备
+            let clock = parseInt(temp/3600);
+            ttselect.innerHTML=""+minute+":"+temp%60+"";
+        })
+        // ttselect.innerHTML=""+cur%60+"";
         // audio.addEventListener("ended",function(){
         //     //音频元素当结束播放时触发的函数
         //     aheadselect.style.left=0+"";
