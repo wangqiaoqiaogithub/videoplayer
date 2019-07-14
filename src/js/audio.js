@@ -207,7 +207,7 @@
         this.bindaudiocontrols();
         this.bindloadingpic();
         //创建init函数为共有方法
-        console.log(""+"欢迎使用video.js "+"veision:"+proto.version+"")
+        console.log(""+"欢迎使用video.js "+"veision:"+proto.version+"","color: #fff; background: #000; font-size: 19px;")
     }
     proto.bindclick = function(){
         let audio = this.name;
