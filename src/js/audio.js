@@ -58,6 +58,9 @@
                 classNames.splice(index, 1);
             }
             elementName.className = classNames.join('');
+        },
+        typeofqs:function(element){
+            return typeof element === "string" ? document.querySelector(element) : element;
         }
     }
     function Videoplayer(
@@ -207,14 +210,14 @@
         this.bindaudiocontrols();
         this.bindloadingpic();
         //创建init函数为共有方法
-        console.log(""+"欢迎使用video.js "+"veision:"+proto.version+"","color: #fff; background: #000; font-size: 19px;")
+        console.log(""+"%c欢迎使用video.js "+"veision:"+proto.version+"","color: #fff; background: #000; font-size: 19px;")
     }
     proto.bindclick = function(){
         let audio = this.name;
-        let videobtn = this.btn;
-        let selectorvbtn = typeof videobtn === "string" ? document.querySelector(videobtn) : videobtn;
+        //let videobtn = this.btn;
         let videoplay = this.videoplay;
         let videopause = this.videopause;
+        let selectorvbtn = util.typeofqs(this.btn);
         util.addEvent(audio,"click",function(){
             //主屏幕点击触发
             if(audio.paused){
@@ -230,8 +233,8 @@
     }
     proto.bindbtn = function(){
         let audio = this.name;
-        let videobtn = this.btn;
-        let selectorvbtn = typeof videobtn === "string" ? document.querySelector(videobtn) : videobtn;
+        // let videobtn = this.btn;
+        let selectorvbtn = util.typeofqs(this.btn);
         let videoplay = this.videoplay;
         let videopause = this.videopause;
         util.addEvent(selectorvbtn,"click",function(){
@@ -248,10 +251,10 @@
         })
     }
     proto.bindfscreen = function(){
-        let fullscreen = this.fullscreen;//获取将要点击的全屏按钮
-        let fsbtn = this.choicefs;
-        let selectfs = typeof fullscreen === "string"? document.querySelector(fullscreen): fullscreen;
-        let selectfsbtn = typeof fsbtn === "string"? document.querySelector(fsbtn): fsbtn;
+        //let fullscreen = this.fullscreen;//获取将要点击的全屏按钮
+        //let fsbtn = this.choicefs;
+        let selectfs = util.typeofqs(this.fullscreen);
+        let selectfsbtn = util.typeofqs(this.choicefs);
         let ele = document.documentElement||document||window||document.body;
         util.addEvent(selectfsbtn,"click",function(){
             if (ele.requestFullscreen) {
@@ -268,8 +271,8 @@
         })
     }
     proto.exitfscreen = function(){
-        let fsbtn = this.choicefs;//获取将要点击的视屏类名id
-        let selectfsbtn = typeof fsbtn === "string"? document.querySelector(fsbtn): fsbtn;
+        //let fsbtn = this.choicefs;//获取将要点击的视屏类名id
+        let selectfsbtn = util.typeofqs(this.choicefs);
         let ele = document||document.body||window;//获取退出时的文档
         util.addEvent(selectfsbtn,"click",function(){
             if (ele.exitFullScreen) {
@@ -288,8 +291,8 @@
     }
     proto.onoff_fsbtn = function(){
         //这是点击全屏按钮时的图标切换模块
-        let fsbtn = this.choicefs;//获取将要点击的视屏类名id
-        let selectfsbtn = typeof fsbtn === "string"? document.querySelector(fsbtn): fsbtn;
+        //let fsbtn = this.choicefs;//获取将要点击的视屏类名id
+        let selectfsbtn = util.typeofqs(this.choicefs);
         let onoff = true;
         let fsicon = this.fsicon;
         let efsbtn = this.exitfsicon;
@@ -305,8 +308,8 @@
     }
     proto.bindpinpicture = function(){
         let audio = this.name;
-        let pip = this.pipbtn;
-        let pipbtn = typeof pip === "string"? document.querySelector(pip): pip;
+        //let pip = this.pipbtn;
+        let pipbtn = util.typeofqs(this.pipbtn);
         let ele = document||document.body||window;
         util.addEvent(pipbtn,"click",function(){
             if(audio !== document.pictureInPictureElement){
@@ -318,19 +321,19 @@
     }
     proto.bindVideotime = function(){
         let audio = this.name;
-        let timebeat = this.options.timebeat;
-        let timetotal = this.options.timetotal;
-        let apcontrols = this.apcontrols;
-        let ahead = this.audiohead;
-        let alprogress = this.aloadprogress; 
-        let aprogress = this.audioprogress;
         let mapdistance = this.mouseaprogressdistance;
-        let changetime = typeof timebeat === "string"? document.querySelector(timebeat): timebeat;
-        let aheadselect = typeof ahead === "string"? document.querySelector(ahead): ahead;
-        let alpselect = typeof alprogress === "string"? document.querySelector(alprogress): alprogress;
-        let apselect = typeof aprogress === "string"?document.querySelector(aprogress): aprogress;
-        let apcselect = typeof apcontrols === "string"?document.querySelector(apcontrols): apcontrols;
-        let ttselect =  typeof timetotal === "string"?document.querySelector(timetotal): timetotal;
+        //let timebeat = this.options.timebeat;
+        //let timetotal = this.options.timetotal;
+        //let apcontrols = this.apcontrols;
+        //let ahead = this.audiohead;
+        //let alprogress = this.aloadprogress; 
+        //let aprogress = this.audioprogress;
+        let changetime = util.typeofqs(this.timebeat);
+        let aheadselect = util.typeofqs(this.audiohead);
+        let alpselect = util.typeofqs(this.aloadprogress);
+        let apselect = util.typeofqs(this.audioprogress);
+        let apcselect = util.typeofqs(this.apcontrols);
+        let ttselect =  util.typeofqs(this.timetotal);
         util.addEvent(audio,"canplay",function(){
             audio.canplay=true;//开启canplyaudio属性的作用
         })
@@ -392,19 +395,19 @@
     proto.bindspeed = function(){
         let audio = this.name;
         let speedbtn = this.speedbtn;
-        let speedselect = typeof speedbtn === "string"? document.querySelector(speedbtn): speedbtn;
         let speedlist = this.speedlist;
-        let slselect = typeof speedlist === "string"? document.querySelector(speedlist): speedlist;
         let slistclassopen = this.slistclassopen;
         let slistclassshut = this.slistclassshut;
         let slistone = this.slistone;
         let slisttwo = this.slisttwo;
         let slistthree = this.slistthree;
         let slistfour = this.slistfour;
-        let sloneselect = typeof slistone === "string"? document.querySelector(slistone): slistone;
-        let sltwoselect = typeof slisttwo === "string"? document.querySelector(slisttwo): slisttwo;
-        let slthreeselect = typeof slistthree === "string"? document.querySelector(slistthree): slistthree;
-        let slfourselect = typeof slistfour === "string"? document.querySelector(slistfour): slistfour;
+        let speedselect = util.typeofqs(this.speedbtn);
+        let slselect = util.typeofqs(this.speedlist);
+        let sloneselect = util.typeofqs(this.slistone);
+        let sltwoselect = util.typeofqs(this.slisttwo);
+        let slthreeselect = util.typeofqs(this.slistthree);
+        let slfourselect = util.typeofqs(this.slistfour);
         let onoff = true;
         util.addEvent(speedselect,"click",function(){
             if(onoff == true){
@@ -437,23 +440,22 @@
     }
     proto.bindvolume = function(){
         let audio = this.name;
-        let volumebtn = this.volumebtn;
-        let volumemouse = this.volumemouse;
+        //let volumebtn = this.volumebtn;
+        //let volumemouse = this.volumemouse;
+        //let vcontrols = this.vcontrols;
+        //let vprogress = this.vprogress;
+        //let volumehead = this.volumehead;
         let vmediumclass = this.vmediumclass;
         let vmuteclass = this.vmuteclass;
         let vbigclass = this.vbigclass;
-        let vcontrols = this.vcontrols;
-        let volumehead = this.volumehead;
-        let vprogress = this.vprogress;
         let apcontrols = this.apcontrols;
         let onoff = true;
-        let vbselect = typeof volumebtn === "string"? document.querySelector(volumebtn): volumebtn;
-        let vmselect = typeof volumemouse === "string"? document.querySelector(volumemouse): volumemouse;
-        let vcselect = typeof vcontrols === "string"? document.querySelector(vcontrols): vcontrols;
-        let vpselect = typeof vprogress === "string"? document.querySelector(vprogress): vprogress;
-        let vhselect = typeof volumehead === "string"? document.querySelector(volumehead): volumehead;
         let mapdistance = this.mouseaprogressdistance;
-        
+        let vbselect = util.typeofqs(this.volumebtn);
+        let vmselect = util.typeofqs(this.volumemouse);
+        let vcselect = util.typeofqs(this.vcontrols);
+        let vpselect = util.typeofqs(this.vprogress);
+        let vhselect = util.typeofqs(this.volumehead);
         util.addEvent(vbselect,"mouseover",function(){
             vmselect.style="display: block";
         })
@@ -498,13 +500,13 @@
     }
     proto.bindaudiocontrols = function(){
         let audio = this.name;
-        let apcontrols = this.apcontrols;
-        let ahead = this.audiohead;
-        let aprogress = this.audioprogress;
         let mapdistance = this.mouseaprogressdistance;
-        let aheadselect = typeof ahead === "string"? document.querySelector(ahead): ahead;
-        let apselect = typeof aprogress === "string"?document.querySelector(aprogress): aprogress;
-        let apcselect = typeof apcontrols === "string"?document.querySelector(apcontrols): apcontrols;
+        //let apcontrols = this.apcontrols;
+        //let ahead = this.audiohead;
+        //let aprogress = this.audioprogress;
+        let aheadselect = util.typeofqs(this.audiohead);
+        let apselect = util.typeofqs(this.audioprogress);
+        let apcselect = util.typeofqs(this.apcontrols);
         util.addEvent(apcselect,"click",function(e){
             let offsetx =  e.offsetX;
             let lenth = audio.duration;
@@ -517,9 +519,9 @@
     }
     proto.bindloadingpic = function(){
         let audio = this.name;
-        let audioloading = this.audioloadingselect;
-        let loadingselect = typeof audioloading === "string"? document.querySelector(audioloading): audioloading;
         let loadinghide = this.loadinghideclass;
+        //let audioloading = this.audioloadingselect;
+        let loadingselect = util.typeofqs(this.audioloadingselect);
         util.addEvent(audio,"waiting",function(){
             //删除待加载的图标组件
             util.removeClass(loadingselect,loadinghide);
