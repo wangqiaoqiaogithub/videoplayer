@@ -2,7 +2,8 @@
 >这是一个由HMLT5API提供的视频播放器原生插件
 ## 介绍
 * 是一个原生无任何依赖项具有封装性的模块化插件
-* 效果演示：
+* 效果演示：![DEMO](https://wangqiaoqiaogithub.github.io/videoplayer/dist/index.html)
+   
 ## 下载
 ```
 git clone git@github.com:wangqiaoqiaogithub/videoplayer.git
