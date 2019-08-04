@@ -80,15 +80,17 @@ module.exports= {
                 ]
             },
             {
-                test: /\.(png|jpe?g|gif)(\?.*)?$/,
-                use:{
-                    loader: 'url-loader',
-                    options:{
-                        limit: 1024 * 8,// 8k以上，用file-loader抽离（非必须，默认就是file-loader)
-                        fallback: 'file-loader',
-                        outputPath: 'img/'//解析打包后输出的文件目录
+                test: /\.(png|jpeg?|gif)$/,
+                use:[
+                    {
+                        loader: 'url-loader',
+                        options:{
+                            limit: 1000,// 8k以上，用file-loader抽离（非必须，默认就是file-loader)
+                            fallback: 'file-loader',
+                            outputPath: 'img/'//解析打包后输出的文件目录
+                        }
                     }
-                }
+                ]
             },
         ]
     },
