@@ -51,7 +51,7 @@ var videoscreen = new Video('#myAudio',{
   vprogress: '自定义',
   apcontrols: '自定义',
   audioprogress: '自定义',
-  audiohead: '自定义',
+  audiohead: '自定义',//点击
   aloadprogress: '自定义',
   mousevolumedistance: 1,//鼠标点击调节音量时小球偏移量(它的作用是能让小球和滚动条更能凝聚在一起)
   mouseaprogressdistance: 5,//鼠标点击时调节视频进度的时候偏移量(小球更好的凝聚在一起)
@@ -60,7 +60,7 @@ var videoscreen = new Video('#myAudio',{
 })
 ```
 ## 环境
-安装node依赖包：
+安装node所有依赖包：
 ```
 npm install
 ```
