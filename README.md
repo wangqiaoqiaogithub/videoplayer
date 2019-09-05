@@ -23,7 +23,7 @@ HTML文件：
 ```
 JavaScript文件：
 ```js
-var videoscreen = new Video('#myAudio',{
+var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
   btn: '自定义',
   videoplay: "自定义",
   videopause: "自定义",
