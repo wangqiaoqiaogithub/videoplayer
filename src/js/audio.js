@@ -195,7 +195,7 @@
     }
     var proto = Video.prototype = new Videoplayer();
     proto.constructor = Video;
-    proto.version = '2.0.0';
+    proto.version = '%c2.0.0';
     proto.init = function(){
         this.bindclick();
         this.bindfscreen();
@@ -210,7 +210,9 @@
         this.bindaudiocontrols();
         this.bindloadingpic();
         //创建init函数为共有方法
-        console.log(""+"%c欢迎使用video.js "+"veision:"+proto.version+"","color: #fff; background: #000; font-size: 19px;")
+        console.log(""+"%cveision"+proto.version+"",
+        "color: #fff; background: #3d3d3d; font-size: 14px; padding: 0px 5px;",
+        "background: #0366d6;color: #fff;font-size: 14px; padding: 0px 5px;")
     }
     proto.bindclick = function(){
         let audio = this.name;
