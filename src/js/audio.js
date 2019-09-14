@@ -210,9 +210,9 @@
         this.bindaudiocontrols();
         this.bindloadingpic();
         //创建init函数为共有方法
-        console.log(""+"%cveision"+proto.version+"",
-        "color: #fff; background: #3d3d3d; font-size: 14px; padding: 0px 5px;",
-        "background: #0366d6;color: #fff;font-size: 14px; padding: 0px 5px;")
+        console.log(""+"%cVeision"+proto.version+"",
+        "color: #fff; background: #606060; font-size: 14px; padding: 0px 6px 0px 6px; border-radius: 3px 0px 0px 3px;",
+        "background: #1475b2;color: #fff;font-size: 14px; padding: 0px 6px 0px 6px; border-radius: 0 3px 3px 0;")
     }
     proto.bindclick = function(){
         let audio = this.name;
