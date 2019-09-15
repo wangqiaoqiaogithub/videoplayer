@@ -24,9 +24,9 @@ HTML文件：
 JavaScript文件：
 ```js
 var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
-  btn: '自定义',
-  videoplay: "自定义",
-  videopause: "自定义",
+  btn: '自定义',//控制播放暂停的按钮
+  videoplay: "自定义",//音频开始状态时的按钮样式
+  videopause: "自定义",//音频暂停状态时的按钮样式
   fullscreen: '自定义',
   choicefs: "自定义",
   fsicon: '自定义',
