@@ -37,12 +37,12 @@ var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
   speedlist: '自定义',//倍速列表最外部容器(被speedbtn属性操控)
   slistclassopen: '自定义',//倍速列表被点击显示状态的类名属性(该类名属性主要用来是该容器被点击是显示)
   slistclassshut: '自定义',///倍速列表被点击关闭状态的类名属性(该类名属性主要用来是该容器被点击是隐藏)
-  slistone: '自定义',//倍速列表中的.5x倍速按钮
-  slisttwo: "自定义",//倍速列表中的1x倍速按钮
-  slistthree: "自定义",//倍速列表中的1.5x倍速按钮
-  slistfour: "自定义",//倍速列表中的2x倍速按钮
-  volumebtn: '自定义',
-  volumemouse: '自定义',
+  slistone: '自定义',//倍速列表中的.5x倍速按钮属性
+  slisttwo: "自定义",//倍速列表中的1x倍速按钮属性
+  slistthree: "自定义",//倍速列表中的1.5x倍速按钮属性
+  slistfour: "自定义",//倍速列表中的2x倍速按钮属性
+  volumebtn: '自定义',//声音按钮容器样式属性(控制声音列表的显示和隐藏)
+  volumemouse: '自定义',//声音列表容器样式属性(被控制放大缩小的最外容器声音列表)
   vmuteclass: '自定义',
   vmediumclass: '自定义',
   vbigclass: '自定义',
