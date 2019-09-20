@@ -492,7 +492,6 @@
             }else if(audio.volume >= 0.5){
                 vbselect.className = vbigclass+"";
             }
-            //console.log(parseInt((audio.volume)*100))
         })
         util.addEvent(vmselect,"mouseover",function(){
             this.style="display: block";
