@@ -48,7 +48,7 @@ var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
   vbigclass: '自定义',
   vcontrols: '自定义',
   volumehead: '自定义',//点击调节声音大小时的小球(方向指示器)
-  vprogress: '自定义',
+  vprogress: '自定义',//被控制的声音的进度条（高度会自动调节）
   apcontrols: '自定义',
   audioprogress: '自定义',//显示音频加载时缓冲完的的进度条属性容器
   audiohead: '自定义',//点击调节音频进度时的小球(方向指示器)
