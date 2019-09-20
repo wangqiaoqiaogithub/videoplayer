@@ -47,11 +47,11 @@ var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
   vmediumclass: '自定义',
   vbigclass: '自定义',
   vcontrols: '自定义',
-  volumehead: '自定义',
+  volumehead: '自定义',//点击调节声音大小时的小球(方向指示器)
   vprogress: '自定义',
   apcontrols: '自定义',
   audioprogress: '自定义',//显示音频加载时缓冲完的的进度条属性容器
-  audiohead: '自定义',
+  audiohead: '自定义',//点击调节音频进度时的小球(方向指示器)
   aloadprogress: '自定义',//显示音频加载时播放过的的进度条属性容器
   mousevolumedistance: 1,//鼠标点击调节音量时小球偏移量(它的作用是能让小球和滚动条更能凝聚在一起)
   mouseaprogressdistance: 5,//鼠标点击时调节视频进度的时候偏移量(小球更好的凝聚在一起)
