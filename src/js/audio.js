@@ -484,7 +484,7 @@
             }
             audio.volume = parseFloat(percentage/100)*1;
             vhselect.style.bottom =""+total+"px";
-            vpselect.style.height =""+Math.ceil(pero*vcselect.offsetHeight)+"px";
+            vpselect.style.height =""+(1-audio.volume)*100+"%";
             if(percentage <= 0){
                 vbselect.className = vmuteclass+"";
             }else if(audio.volume <= 0.5){
@@ -492,6 +492,7 @@
             }else if(audio.volume >= 0.5){
                 vbselect.className = vbigclass+"";
             }
+            //console.log(parseInt((audio.volume)*100))
         })
         util.addEvent(vmselect,"mouseover",function(){
             this.style="display: block";
