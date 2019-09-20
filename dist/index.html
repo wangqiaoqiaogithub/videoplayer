@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"></meta>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="renderer" content="webkit">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>video视频播放器</title>
+    <link href="css/app.min.css?7247065e3ae383aef325" rel="stylesheet"></head>
+    <body>
+        <div class="container">
+            <div class="video">
+                <div class="audiomain">
+                    <div class="audiocontent">
+                        <div class="videop_div">
+                            <video class="videoplayer" id="myAudio" preload="auto">
+                                <source src="audio/3f5557a8d2fa40279f7ce54087b5596d.mp4" type="video/mp4">
+                                </source>
+                            </video>
+                        </div>
+                        <div class="videocontrol clearfix">
+                            <div class="video_top">
+                                <!-- 音频的进度条 -->
+                                <div class="video_progress clearfix">
+                                    <div class="" id="vtprogress">
+                                    </div>
+                                    <div class="" id="vthead"></div>
+                                    <div id="alprogress" class="audioloadprogress"></div>
+                                </div>
+                                <!-- 以上为音频的进度条 -->
+                                <!-- 这是加载图片 -->
+                                <div id="audioloading">
+                                    <img class="loadingimg" src="img/8be7cfdf5bb96d2fb80fa9d2dc0ba125.gif" alt="">
+                                </div>
+                                <!-- 以上为加载图片 -->
+                            </div>
+                            <div class="video_bottom">
+                                <!-- 音频的暂停控制按钮 -->
+                                <div class="video_btn clearfix">
+                                    <span class="iconfont iconplay" id="vbtn"></span>
+                                </div>
+                                <!-- 以上为音频的暂停控制按钮 -->
+                                <!-- 音频时间 -->
+                                <div class="video_time clearfix">
+                                    <span class="changetime clearfix" id="datetime"></span>
+                                    <span class="vseparator clearfix"> / </span>
+                                    <span class="vduration clearfix" id="videoduration"></span>
+                                </div>
+                                <!-- 以上为音频的时间 -->
+                                <!-- 音频的音量 -->
+                                <div class="video_volume clearfix">
+                                    <span class="iconfont iconvolumeup" id="volume"></span>
+                                    <div class="clearfix" id="vlpanel">
+                                        <div id="volumecontrols">
+                                            <div class="volumebar">
+                                                <span id="vprogress" class="volumeprogress"></span>
+                                            </div>
+                                            <div class="volumehead">
+                                                <span id="vhead" class="iconvolumehead">  
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 以上为音频的音量 -->
+                                <!-- 音频的速度 -->
+                                <div class="video_speed clearfix">
+                                    <div class="" id="v_speed">
+                                        倍速
+                                    </div>
+                                    <div class="" id="speedcontrol">
+                                        <ul class="speedul" id="speed_ul">
+                                            <li id="one">
+                                                0.5x
+                                            </li>
+                                            <li id="two">
+                                                1x
+                                            </li>
+                                            <li id="three">
+                                                1.5x
+                                            </li>
+                                            <li id="four">
+                                                2x
+                                            </li>
+                                        </ul> 
+                                    </div>
+                                </div> 
+                                <!-- 以上为音频的速度 -->
+                                <div class="video_pinpicture">
+                                    <div class="" id="pinpicture">
+                                        画中画
+                                    </div>
+                                </div>
+                                <!-- 音频是否全屏 -->
+                                <div class="video_fullscreen clearfix">
+                                    <span class="iconfont iconfullscreen" id="v_fullscreen"></span>
+                                </div>
+                                <!-- 以上为音频是否全屏 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script type="text/javascript" src="js/bundle.7247065e.js?7247065e3ae383aef325"></script><script type="text/javascript" src="js/other.7247065e.js?7247065e3ae383aef325"></script></body>
+</html>
