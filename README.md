@@ -21,7 +21,7 @@ HTML文件：
 ```html
 <video id="myAudio" src="xxx" type="video/mp4"></video>
 ```
-JavaScript文件：
+JavaScript文件中的插件配置：
 ```js
 var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
   btn: '自定义',//控制播放暂停的按钮
