@@ -2,7 +2,7 @@
 >这是一个由HMLT5API提供的视频播放器原生插件
 ## 介绍
 * 是一个原生无任何依赖项具有封装性的模块化插件
-* 效果演示：[Videoplayer DEMO](https://wangqiaoqiaogithub.github.io/videoplayer/dist/index.html)
+* 效果演示：[Videoplayer DEMO](https://wangqiaoqiaogithub.github.io/videoplayer/dist/index.html)(细节性的API方法都在控制台日志这里)
    
 ## 下载
 ```
@@ -72,4 +72,3 @@ webpack打包命令：
 ```js
 npm run build
 ```
-#### 细节性的属性方法还请查看demo页面中控制台的日志
