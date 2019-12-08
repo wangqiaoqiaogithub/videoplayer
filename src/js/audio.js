@@ -69,7 +69,7 @@
         speedlist,slistclassopen,slistclassshut,slistone,slisttwo,slistthree,
         slistfour,volumebtn,volumemouse,vmuteclass,vmediumclass,vbigclass,vcontrols,
         volumehead,vprogress,apcontrols,audiohead,audioprogress,aloadprogress,mousevolumedistance,
-        mouseaprogressdistance,audioloadingselect,loadinghideclass
+        mouseaprogressdistance,audioloadingselect,loadinghideclass,rightclickmenu
     ){
         this.btn= btn;//绑定播放按钮
         this.videoplay = videoplay;//提供开始播放类名的属性
@@ -105,6 +105,7 @@
         this.mouseaprogressdistance = mouseaprogressdistance;
         this.audioloadingselect = audioloadingselect;
         this.loadinghideclass = loadinghideclass;
+        this.rightclickmenu = rightclickmenu;
     }
     Video.defaultOptions = {
         //提供参数的地方
@@ -149,7 +150,7 @@
         this.name = typeof name === "string" ? document.querySelector(name) : name;
         this.options = util.extend({}, this.constructor.defaultOptions, options)
         /**
-         * 接着引用拷贝函数以拷贝的形式复制父类使用属性
+         * 接着引用拷贝函数以拷贝的形式复制父类并使用属性
          * 接着call方法让Video类继承Videoplayer类
          * 通过继承的属性储存在了子类型中
          * 接着创建一个共有属性让它等于拷贝函数(this.options = util.extend({}, 
@@ -191,6 +192,7 @@
         this.mouseaprogressdistance = this.options.mouseaprogressdistance;
         this.audioloadingselect = this.options.audioloadingselect;
         this.loadinghideclass = this.options.loadinghideclass;
+        this.rightclickmenu = this.options.rightclickmenu;
         this.init();
     }
     var proto = Video.prototype = new Videoplayer();
@@ -209,7 +211,8 @@
         this.bindVideotime();
         this.bindaudiocontrols();
         this.bindloadingpic();
-        //创建init函数为共有方法
+        // this.bindrightmenu();
+        // 创建init函数为共有方法
         console.log(""+"%cVeision"+proto.version+"",
         "color: #fff; background: #606060; font-size: 14px; padding: 0px 6px 0px 6px; border-radius: 3px 0px 0px 3px;",
         "background: #1475b2;color: #fff;font-size: 14px; padding: 0px 6px 0px 6px; border-radius: 0 3px 3px 0;")
@@ -387,12 +390,6 @@
             let clock = parseInt(temp/3600);
             ttselect.innerHTML=""+minute+":"+temp%60+"";
         })
-        // ttselect.innerHTML=""+cur%60+"";
-        // audio.addEventListener("ended",function(){
-        //     //音频元素当结束播放时触发的函数
-        //     aheadselect.style.left=0+"";
-        //     apselect.style.width=0+"";
-        // })
     }
     proto.bindspeed = function(){
         let audio = this.name;
@@ -536,7 +533,32 @@
             //客户端正在请求数据时删除待加载的图标组件
             util.removeClass(loadingselect,loadinghide);
         })
-    }   
+    } 
+   /**
+    * 屏幕上右键点击出现信息菜单
+    * @privatemethod bindrightmenu
+    * @author wangqiaoqiaogithub
+    * */
+    proto.bindrightmenu = function(){
+        let audio = this.name;
+        let rclickmenu = this.util.typeofqs(this.rightclickmenu);
+        let onoff = true;
+        util.addEvent(audio,"contextmenu",function(e){
+            let event = e || window.event;
+            // let clientRect = audio.getBoundingClientRect();
+            event.preventDefult();//阻止事件默认
+            // 监听点击右键事件
+            if(onoff === true){
+                console.log(1);
+                rclickmenu.style="display:block";
+                onoff = false;
+            }else{
+                console.log(2);
+                rclickmenu.style="display:none";
+                onoff = true;
+            }
+        })
+    }
     /** 
      * 视频思路:
      * 获取到this.name（视屏来源）,给this.btn添加点击事件(作用点)
