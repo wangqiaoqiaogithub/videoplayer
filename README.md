@@ -25,15 +25,15 @@ JavaScript文件中的插件配置：
 ```js
 var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
   btn: '自定义',//控制播放暂停的按钮
-  videoplay: "自定义",//音频开始状态时的按钮样式
-  videopause: "自定义",//音频暂停状态时的按钮样式
-  fullscreen: '自定义',
-  choicefs: "自定义",
+  videoplay: "自定义",//音频开始状态时的按钮样式属性
+  videopause: "自定义",//音频暂停状态时的按钮样式的属性
+  fullscreen: '自定义',//当全屏时的受益容器
+  choicefs: "自定义",//点击进入全屏的按钮容器属性
   fsicon: '自定义',
   exitfsicon: '自定义',
   timebeat: '自定义',
   pipbtn: '自定义',
-  speedbtn: '自定义',//控制显示或隐藏倍速列表的按钮
+  speedbtn: '自定义',//控制显示或隐藏倍速列表的按钮属性
   speedlist: '自定义',//倍速列表最外部容器(被speedbtn属性操控)
   slistclassopen: '自定义',//倍速列表被点击显示状态的类名属性(该类名属性主要用来是该容器被点击是显示)
   slistclassshut: '自定义',///倍速列表被点击关闭状态的类名属性(该类名属性主要用来是该容器被点击是隐藏)
@@ -47,12 +47,12 @@ var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
   vmediumclass: '自定义',
   vbigclass: '自定义',
   vcontrols: '自定义',
-  volumehead: '自定义',//点击调节声音大小时的小球(方向指示器)
-  vprogress: '自定义',//被控制的声音的进度条（高度会自动调节）
+  volumehead: '自定义',//点击调节声音大小时的小球属性(方向指示器)
+  vprogress: '自定义',//被控制的声音的进度条属性（高度会自动调节）
   apcontrols: '自定义',
-  audioprogress: '自定义',//显示音频加载时缓冲完的的进度条属性容器
+  audioprogress: '自定义',//显示音频加载时缓冲完的的进度条容器属性
   audiohead: '自定义',//点击调节音频进度时的小球(方向指示器)
-  aloadprogress: '自定义',//显示音频加载时播放过的的进度条属性容器
+  aloadprogress: '自定义',//显示音频加载时播放过的的进度条容器属性
   mousevolumedistance: 1,//鼠标点击调节音量时小球偏移量(它的作用是能让小球和滚动条更能凝聚在一起)
   mouseaprogressdistance: 5,//鼠标点击时调节视频进度的时候偏移量(小球更好的凝聚在一起)
   audioloadingselect: '自定义',//缓存加载视频时的loading选择器(让它去控制别的类名，来控制类名的显示隐藏)
