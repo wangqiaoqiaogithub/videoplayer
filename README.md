@@ -1,5 +1,5 @@
 ﻿## Videoplayer.js
->这是一个由HMLT5API提供的视频播放器原生插件
+>这是一个由HMLT5API提供的视频播放器原生插件，专为开发者提供的友好、便捷。
 ## 介绍
 * 是一个原生无任何依赖项具有封装性的模块化插件
 * 效果演示：[Videoplayer DEMO](https://wangqiaoqiaogithub.github.io/videoplayer/dist/index.html)(细节性的API方法都在控制台日志这里)
@@ -23,7 +23,7 @@ HTML文件：
 ```
 JavaScript文件中的插件配置：
 ```js
-var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
+var videoscreen = new Video('#myAudio'//确定video标签的id容器,{
   btn: '自定义',//控制播放暂停的按钮属性
   videoplay: "自定义",//音频开始状态时的按钮样式属性
   videopause: "自定义",//音频暂停状态时的按钮样式的属性
