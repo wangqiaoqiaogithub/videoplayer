@@ -24,15 +24,16 @@ HTML文件：
 JavaScript文件中的插件配置：
 ```js
 var videoscreen = new Video('#myAudio'//确定video的id标签容器,{
-  btn: '自定义',//控制播放暂停的按钮
+  btn: '自定义',//控制播放暂停的按钮属性
   videoplay: "自定义",//音频开始状态时的按钮样式属性
   videopause: "自定义",//音频暂停状态时的按钮样式的属性
-  fullscreen: '自定义',//当全屏时的受益容器
+  fullscreen: '自定义',//当全屏时的受益容器属性
   choicefs: "自定义",//点击进入全屏的按钮容器属性
-  fsicon: '自定义',
-  exitfsicon: '自定义',
-  timebeat: '自定义',
-  pipbtn: '自定义',
+  fsicon: '自定义',//未进入全屏时的元素样式属性（用来设置未进入全屏时的字体图标）
+  exitfsicon: '自定义',//退出全屏时的元素样式属性（用来设置退出全屏时的字体图标）
+  timebeat: '自定义',//计算video标签的视频当前所用时间容器属性
+  timetotal: '自定义',//计算video标签的视频总时间容器属性
+  pipbtn: '自定义',//音频画中画时的点击开启按钮属性
   speedbtn: '自定义',//控制显示或隐藏倍速列表的按钮属性
   speedlist: '自定义',//倍速列表最外部容器(被speedbtn属性操控)
   slistclassopen: '自定义',//倍速列表被点击显示状态的类名属性(该类名属性主要用来是该容器被点击是显示)
