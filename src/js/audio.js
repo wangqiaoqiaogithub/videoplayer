@@ -183,13 +183,10 @@
         this.bindloadingpic();
         // this.bindrightmenu();
         // 创建init函数为共有方法
-<<<<<<< HEAD
         let {totalsone,totalstwo} = {
             totalsone: "color: #fff; background: #606060; font-size: 12px; padding: 0px 6px 0px 6px; border-radius: 3px 0px 0px 3px;",
             totalstwo: "background: #1475b2;color: #fff;font-size: 12px; padding: 0px 6px 0px 6px; border-radius: 0 3px 3px 0;"
         }
-=======
->>>>>>> 97570032f7e526b1deef5634263f51990ead637d
         console.log(""+"%cVeision"+proto.version+"",
         totalsone,totalstwo)
         console.log(""+"%cbuildtime"+proto.buildtime+"",
@@ -216,10 +213,6 @@
     }
     proto.bindbtn = function(){
         let audio = this.name;
-<<<<<<< HEAD
-=======
-        // let videobtn = this.btn;
->>>>>>> 97570032f7e526b1deef5634263f51990ead637d
         let selectorvbtn = util.typeofqs(this.options.btn);
         let videoplay = this.options.videoplay;
         let videopause = this.options.videopause;
@@ -378,10 +371,7 @@
         let slistclassshut = this.options.slistclassshut;
         let speedselect = util.typeofqs(this.options.speedbtn);
         let slselect = util.typeofqs(this.options.speedlist);
-<<<<<<< HEAD
         let slschildren = slselect.childNodes.item(1).children;
-=======
->>>>>>> 97570032f7e526b1deef5634263f51990ead637d
         let sloneselect = util.typeofqs(this.options.slistone);
         let sltwoselect = util.typeofqs(this.options.slisttwo);
         let slthreeselect = util.typeofqs(this.options.slistthree);

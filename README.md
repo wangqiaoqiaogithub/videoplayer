@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿## Videoplayer.js
+## Videoplayer.js
 >这是一个由HMLT5API提供的视频播放器原生插件
 ## 介绍
 * 是一个原生无任何依赖项具有封装性的模块化插件
@@ -149,4 +148,3 @@ webpack打包命令：
 ```js
 npm run build
 ```
->>>>>>> 97570032f7e526b1deef5634263f51990ead637d
