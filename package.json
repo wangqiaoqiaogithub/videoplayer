@@ -1,7 +1,7 @@
 {
   "name": "mywheels",
   "version": "1.0.0",
-  "description": "",
+  "description": ">这是一个由HMLT5API提供的视频播放器原生插件 ## 介绍 * 是一个原生无任何依赖项具有封装性的模块化插件 * 效果演示：[Videoplayer DEMO](https://wangqiaoqiaogithub.github.io/videoplayer/dist/index.html)(细节性的API方法都在控制台日志这里)",
   "main": "index.js",
   "dependencies": {
     "file-loader": "^3.0.1",
@@ -27,6 +27,14 @@
     "build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "wangqiaoqiao",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wangqiaoqiaogithub/videoplayer.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wangqiaoqiaogithub/videoplayer/issues"
+  },
+  "homepage": "https://github.com/wangqiaoqiaogithub/videoplayer#readme"
 }
