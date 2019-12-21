@@ -61,6 +61,10 @@
         },
         typeofqs:function(element){
             return typeof element === "string" ? document.querySelector(element) : element;
+        },
+        contextmenushow: function(clientRect,x,y){
+            // 让右键点击屏幕的菜单展示到鼠标所指的位置
+            let cRect = clientRect.getBoundingClientRect()
         }
     }
     function Videoplayer(
@@ -69,7 +73,7 @@
         speedlist,slistclassopen,slistclassshut,slistone,slisttwo,slistthree,
         slistfour,volumebtn,volumemouse,vmuteclass,vmediumclass,vbigclass,vcontrols,
         volumehead,vprogress,apcontrols,audiohead,audioprogress,aloadprogress,mousevolumedistance,
-        mouseaprogressdistance,audioloadingselect,loadinghideclass
+        mouseaprogressdistance,audioloadingselect,loadinghideclass,rightclickmenu
     ){
         this.btn= btn;//绑定播放按钮
         this.videoplay = videoplay;//提供开始播放类名的属性
@@ -105,6 +109,7 @@
         this.mouseaprogressdistance = mouseaprogressdistance;
         this.audioloadingselect = audioloadingselect;
         this.loadinghideclass = loadinghideclass;
+        this.rightclickmenu = rightclickmenu;
     }
     Video.defaultOptions = {
         //提供参数的地方
@@ -149,7 +154,7 @@
         this.name = typeof name === "string" ? document.querySelector(name) : name;
         this.options = util.extend({}, this.constructor.defaultOptions, options)
         /**
-         * 接着引用拷贝函数以拷贝的形式复制父类使用属性
+         * 接着引用拷贝函数以拷贝的形式复制父类并使用属性
          * 接着call方法让Video类继承Videoplayer类
          * 通过继承的属性储存在了子类型中
          * 接着创建一个共有属性让它等于拷贝函数(this.options = util.extend({}, 
@@ -157,45 +162,12 @@
          * 接着声明一个变量并实例化让Video类的prototype属性实例化Videoplayer类
          * 接着在修复Video类让声明的的那个变量的constructor属性指向Video类
          */
-        this.btn= this.options.btn;//绑定播放按钮
-        this.videoplay = this.options.videoplay;//提供开始播放类名的属性
-        this.videopause = this.options.videopause;//提供暂停播放类名的属性
-        this.choicefs = this.options.choicefs;//提供全屏的类名属性
-        this.fullscreen = this.options.fullscreen;//提供点击按钮会全屏属性
-        this.fsicon = this.options.fsicon;
-        this.exitfsicon = this.options.exitfsicon;
-        this.timebeat = this.options.timebeat;//播放时间的类名属性
-        this.timetotal = this.options.timetotal;
-        this.pipbtn = this.options.pipbtn;
-        this.speedbtn = this.options.speedbtn;
-        this.speedlist = this.options.speedlist;
-        this.slistclassopen = this.options.slistclassopen;
-        this.slistclassshut = this.options.slistclassshut;
-        this.slistone = this.options.slistone;
-        this.slisttwo = this.options.slisttwo;
-        this.slistthree = this.options.slistthree;
-        this.slistfour = this.options.slistfour;
-        this.volumebtn = this.options.volumebtn;
-        this.volumemouse = this.options.volumemouse;
-        this.vmuteclass = this.options.vmuteclass;
-        this.vmediumclass = this.options.vmediumclass;
-        this.vbigclass = this.options.vbigclass;
-        this.vcontrols = this.options.vcontrols;
-        this.volumehead = this.options.volumehead;
-        this.vprogress = this.options.vprogress;
-        this.apcontrols = this.options.apcontrols;
-        this.audiohead = this.options.audiohead;
-        this.audioprogress = this.options.audioprogress;
-        this.aloadprogress = this.options.aloadprogress;
-        this.mousevolumedistance = this.options.mousevolumedistance;
-        this.mouseaprogressdistance = this.options.mouseaprogressdistance;
-        this.audioloadingselect = this.options.audioloadingselect;
-        this.loadinghideclass = this.options.loadinghideclass;
         this.init();
     }
     var proto = Video.prototype = new Videoplayer();
     proto.constructor = Video;
     proto.version = '%c2.0.0';
+    proto.buildtime = '%c2019-12-20T14:25Z';
     proto.init = function(){
         this.bindclick();
         this.bindfscreen();
@@ -209,17 +181,23 @@
         this.bindVideotime();
         this.bindaudiocontrols();
         this.bindloadingpic();
-        //创建init函数为共有方法
+        // this.bindrightmenu();
+        // 创建init函数为共有方法
+        let {totalsone,totalstwo} = {
+            totalsone: "color: #fff; background: #606060; font-size: 12px; padding: 0px 6px 0px 6px; border-radius: 3px 0px 0px 3px;",
+            totalstwo: "background: #1475b2;color: #fff;font-size: 12px; padding: 0px 6px 0px 6px; border-radius: 0 3px 3px 0;"
+        }
         console.log(""+"%cVeision"+proto.version+"",
-        "color: #fff; background: #606060; font-size: 14px; padding: 0px 6px 0px 6px; border-radius: 3px 0px 0px 3px;",
-        "background: #1475b2;color: #fff;font-size: 14px; padding: 0px 6px 0px 6px; border-radius: 0 3px 3px 0;")
+        totalsone,totalstwo)
+        console.log(""+"%cbuildtime"+proto.buildtime+"",
+        totalsone,totalstwo)
     }
     proto.bindclick = function(){
         let audio = this.name;
         //let videobtn = this.btn;
-        let videoplay = this.videoplay;
-        let videopause = this.videopause;
-        let selectorvbtn = util.typeofqs(this.btn);
+        let videoplay = this.options.videoplay;
+        let videopause = this.options.videopause;
+        let selectorvbtn = util.typeofqs(this.options.btn);
         util.addEvent(audio,"click",function(){
             //主屏幕点击触发
             if(audio.paused){
@@ -235,10 +213,9 @@
     }
     proto.bindbtn = function(){
         let audio = this.name;
-        // let videobtn = this.btn;
-        let selectorvbtn = util.typeofqs(this.btn);
-        let videoplay = this.videoplay;
-        let videopause = this.videopause;
+        let selectorvbtn = util.typeofqs(this.options.btn);
+        let videoplay = this.options.videoplay;
+        let videopause = this.options.videopause;
         util.addEvent(selectorvbtn,"click",function(){
             let lenth = audio.duration;
             //视频控制播放暂停的点击事件触发
@@ -255,8 +232,8 @@
     proto.bindfscreen = function(){
         //let fullscreen = this.fullscreen;//获取将要点击的全屏按钮
         //let fsbtn = this.choicefs;
-        let selectfs = util.typeofqs(this.fullscreen);
-        let selectfsbtn = util.typeofqs(this.choicefs);
+        let selectfs = util.typeofqs(this.options.fullscreen);
+        let selectfsbtn = util.typeofqs(this.options.choicefs);
         let ele = document.documentElement||document||window||document.body;
         util.addEvent(selectfsbtn,"click",function(){
             if (ele.requestFullscreen) {
@@ -274,7 +251,7 @@
     }
     proto.exitfscreen = function(){
         //let fsbtn = this.choicefs;//获取将要点击的视屏类名id
-        let selectfsbtn = util.typeofqs(this.choicefs);
+        let selectfsbtn = util.typeofqs(this.options.choicefs);
         let ele = document||document.body||window;//获取退出时的文档
         util.addEvent(selectfsbtn,"click",function(){
             if (ele.exitFullScreen) {
@@ -294,10 +271,10 @@
     proto.onoff_fsbtn = function(){
         //这是点击全屏按钮时的图标切换模块
         //let fsbtn = this.choicefs;//获取将要点击的视屏类名id
-        let selectfsbtn = util.typeofqs(this.choicefs);
+        let selectfsbtn = util.typeofqs(this.options.choicefs);
         let onoff = true;
-        let fsicon = this.fsicon;
-        let efsbtn = this.exitfsicon;
+        let fsicon = this.options.fsicon;
+        let efsbtn = this.options.exitfsicon;
         util.addEvent(selectfsbtn,"click",function(){
             if(onoff == true){
                 selectfsbtn.className = efsbtn+"";
@@ -311,7 +288,7 @@
     proto.bindpinpicture = function(){
         let audio = this.name;
         //let pip = this.pipbtn;
-        let pipbtn = util.typeofqs(this.pipbtn);
+        let pipbtn = util.typeofqs(this.options.pipbtn);
         let ele = document||document.body||window;
         util.addEvent(pipbtn,"click",function(){
             if(audio !== document.pictureInPictureElement){
@@ -323,19 +300,19 @@
     }
     proto.bindVideotime = function(){
         let audio = this.name;
-        let mapdistance = this.mouseaprogressdistance;
+        let mapdistance = this.options.mouseaprogressdistance;
         //let timebeat = this.options.timebeat;
         //let timetotal = this.options.timetotal;
         //let apcontrols = this.apcontrols;
         //let ahead = this.audiohead;
         //let alprogress = this.aloadprogress; 
         //let aprogress = this.audioprogress;
-        let changetime = util.typeofqs(this.timebeat);
-        let aheadselect = util.typeofqs(this.audiohead);
-        let alpselect = util.typeofqs(this.aloadprogress);
-        let apselect = util.typeofqs(this.audioprogress);
-        let apcselect = util.typeofqs(this.apcontrols);
-        let ttselect =  util.typeofqs(this.timetotal);
+        let changetime = util.typeofqs(this.options.timebeat);
+        let aheadselect = util.typeofqs(this.options.audiohead);
+        let alpselect = util.typeofqs(this.options.aloadprogress);
+        let apselect = util.typeofqs(this.options.audioprogress);
+        let apcselect = util.typeofqs(this.options.apcontrols);
+        let ttselect =  util.typeofqs(this.options.timetotal);
         util.addEvent(audio,"canplay",function(){
             audio.canplay=true;//开启canplyaudio属性的作用
         })
@@ -387,29 +364,18 @@
             let clock = parseInt(temp/3600);
             ttselect.innerHTML=""+minute+":"+temp%60+"";
         })
-        // ttselect.innerHTML=""+cur%60+"";
-        // audio.addEventListener("ended",function(){
-        //     //音频元素当结束播放时触发的函数
-        //     aheadselect.style.left=0+"";
-        //     apselect.style.width=0+"";
-        // })
     }
     proto.bindspeed = function(){
         let audio = this.name;
-        let speedbtn = this.speedbtn;
-        let speedlist = this.speedlist;
-        let slistclassopen = this.slistclassopen;
-        let slistclassshut = this.slistclassshut;
-        let slistone = this.slistone;
-        let slisttwo = this.slisttwo;
-        let slistthree = this.slistthree;
-        let slistfour = this.slistfour;
-        let speedselect = util.typeofqs(this.speedbtn);
-        let slselect = util.typeofqs(this.speedlist);
-        let sloneselect = util.typeofqs(this.slistone);
-        let sltwoselect = util.typeofqs(this.slisttwo);
-        let slthreeselect = util.typeofqs(this.slistthree);
-        let slfourselect = util.typeofqs(this.slistfour);
+        let slistclassopen = this.options.slistclassopen;
+        let slistclassshut = this.options.slistclassshut;
+        let speedselect = util.typeofqs(this.options.speedbtn);
+        let slselect = util.typeofqs(this.options.speedlist);
+        let slschildren = slselect.childNodes.item(1).children;
+        let sloneselect = util.typeofqs(this.options.slistone);
+        let sltwoselect = util.typeofqs(this.options.slisttwo);
+        let slthreeselect = util.typeofqs(this.options.slistthree);
+        let slfourselect = util.typeofqs(this.options.slistfour);
         let onoff = true;
         util.addEvent(speedselect,"click",function(){
             if(onoff == true){
@@ -436,28 +402,25 @@
             audio.playbackRate = 2.0;
             speedselect.innerHTML="2.0X";
         })
+
+        // console.log(slselect.childNodes.item(1).children)
+        // console.log(slselect)
         /**
          * 视频源的playbackRate属性是显示视频源的播放速度
          */
     }
     proto.bindvolume = function(){
         let audio = this.name;
-        //let volumebtn = this.volumebtn;
-        //let volumemouse = this.volumemouse;
-        //let vcontrols = this.vcontrols;
-        //let vprogress = this.vprogress;
-        //let volumehead = this.volumehead;
-        let vmediumclass = this.vmediumclass;
-        let vmuteclass = this.vmuteclass;
-        let vbigclass = this.vbigclass;
-        let apcontrols = this.apcontrols;
+        let vmediumclass = this.options.vmediumclass;
+        let vmuteclass = this.options.vmuteclass;
+        let vbigclass = this.options.vbigclass;
         let onoff = true;
-        let mapdistance = this.mouseaprogressdistance;
-        let vbselect = util.typeofqs(this.volumebtn);
-        let vmselect = util.typeofqs(this.volumemouse);
-        let vcselect = util.typeofqs(this.vcontrols);
-        let vpselect = util.typeofqs(this.vprogress);
-        let vhselect = util.typeofqs(this.volumehead);
+        let mapdistance = this.options.mouseaprogressdistance;
+        let vbselect = util.typeofqs(this.options.volumebtn);
+        let vmselect = util.typeofqs(this.options.volumemouse);
+        let vcselect = util.typeofqs(this.options.vcontrols);
+        let vpselect = util.typeofqs(this.options.vprogress);
+        let vhselect = util.typeofqs(this.options.volumehead);
         util.addEvent(vbselect,"mouseover",function(){
             vmselect.style="display: block";
         })
@@ -502,13 +465,10 @@
     }
     proto.bindaudiocontrols = function(){
         let audio = this.name;
-        let mapdistance = this.mouseaprogressdistance;
-        //let apcontrols = this.apcontrols;
-        //let ahead = this.audiohead;
-        //let aprogress = this.audioprogress;
-        let aheadselect = util.typeofqs(this.audiohead);
-        let apselect = util.typeofqs(this.audioprogress);
-        let apcselect = util.typeofqs(this.apcontrols);
+        let mapdistance = this.options.mouseaprogressdistance;  
+        let aheadselect = util.typeofqs(this.options.audiohead);
+        let apselect = util.typeofqs(this.options.audioprogress);
+        let apcselect = util.typeofqs(this.options.apcontrols);
         util.addEvent(apcselect,"click",function(e){
             let offsetx =  e.offsetX;
             let lenth = audio.duration;
@@ -521,9 +481,9 @@
     }
     proto.bindloadingpic = function(){
         let audio = this.name;
-        let loadinghide = this.loadinghideclass;
+        let loadinghide = this.options.loadinghideclass;
         //let audioloading = this.audioloadingselect;
-        let loadingselect = util.typeofqs(this.audioloadingselect);
+        let loadingselect = util.typeofqs(this.options.audioloadingselect);
         util.addEvent(audio,"waiting",function(){
             //删除待加载的图标组件
             util.removeClass(loadingselect,loadinghide);
@@ -536,7 +496,32 @@
             //客户端正在请求数据时删除待加载的图标组件
             util.removeClass(loadingselect,loadinghide);
         })
-    }   
+    } 
+   /**
+    * 屏幕上右键点击出现信息菜单
+    * @privatemethod bindrightmenu
+    * @author wangqiaoqiaogithub
+    * */
+    proto.bindrightmenu = function(){
+        let audio = this.name;
+        let rclickmenu = this.util.typeofqs(this.options.rightclickmenu);
+        let onoff = true;
+        util.addEvent(audio,"contextmenu",function(e){
+            let event = e || window.event;
+            // let clientRect = audio.getBoundingClientRect();
+            event.preventDefult();//阻止事件默认
+            // 监听点击右键事件
+            if(onoff == true){
+                console.log(1);
+                rclickmenu.style="display:block";
+                onoff = false;
+            }else{
+                console.log(2);
+                rclickmenu.style="display:none";
+                onoff = true;
+            }
+        })
+    }
     /** 
      * 视频思路:
      * 获取到this.name（视屏来源）,给this.btn添加点击事件(作用点)
