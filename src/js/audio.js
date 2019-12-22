@@ -247,7 +247,6 @@
         })
     }
     proto.exitfscreen = function(){
-        //let fsbtn = this.choicefs;//获取将要点击的视屏类名id
         let selectfsbtn = util.typeofqs(this.options.choicefs);
         let ele = document||document.body||window;//获取退出时的文档
         util.addEvent(selectfsbtn,"click",function(){
