@@ -8,7 +8,7 @@ module.exports= {
         progress: true,
         contentBase: './src'
     },
-    mode:'production',//模式 默认两种模式 production development开发环境(代码不压缩)
+    mode:'development',//模式 默认两种模式 production development开发环境(代码不压缩)
     entry: {
         bundle: './src/bundle.js',
         other: './src/wheels_href.js'

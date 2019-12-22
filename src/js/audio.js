@@ -184,8 +184,8 @@
         // this.bindrightmenu();
         // 创建init函数为共有方法
         let {totalsone,totalstwo} = {
-            totalsone: "color: #fff; background: #606060; font-size: 12px; padding: 0px 6px 0px 6px; border-radius: 3px 0px 0px 3px;",
-            totalstwo: "background: #1475b2;color: #fff;font-size: 12px; padding: 0px 6px 0px 6px; border-radius: 0 3px 3px 0;"
+            totalsone: "color: #fff; background: #606060; font-size: 11px; padding: 0px 6px 0px 6px; border-radius: 3px 0px 0px 3px;",
+            totalstwo: "background: #1475b2;color: #fff;font-size: 11px; padding: 0px 6px 0px 6px; border-radius: 0 3px 3px 0;"
         }
         console.log(""+"%cVeision"+proto.version+"",
         totalsone,totalstwo)
@@ -217,7 +217,6 @@
         let videoplay = this.options.videoplay;
         let videopause = this.options.videopause;
         util.addEvent(selectorvbtn,"click",function(){
-            let lenth = audio.duration;
             //视频控制播放暂停的点击事件触发
             if(audio.paused){
                 audio.play();
@@ -230,8 +229,6 @@
         })
     }
     proto.bindfscreen = function(){
-        //let fullscreen = this.fullscreen;//获取将要点击的全屏按钮
-        //let fsbtn = this.choicefs;
         let selectfs = util.typeofqs(this.options.fullscreen);
         let selectfsbtn = util.typeofqs(this.options.choicefs);
         let ele = document.documentElement||document||window||document.body;
@@ -301,12 +298,6 @@
     proto.bindVideotime = function(){
         let audio = this.name;
         let mapdistance = this.options.mouseaprogressdistance;
-        //let timebeat = this.options.timebeat;
-        //let timetotal = this.options.timetotal;
-        //let apcontrols = this.apcontrols;
-        //let ahead = this.audiohead;
-        //let alprogress = this.aloadprogress; 
-        //let aprogress = this.audioprogress;
         let changetime = util.typeofqs(this.options.timebeat);
         let aheadselect = util.typeofqs(this.options.audiohead);
         let alpselect = util.typeofqs(this.options.aloadprogress);
@@ -377,6 +368,7 @@
         let slthreeselect = util.typeofqs(this.options.slistthree);
         let slfourselect = util.typeofqs(this.options.slistfour);
         let onoff = true;
+        Videoplayer.call(arguments);
         util.addEvent(speedselect,"click",function(){
             if(onoff == true){
                 slselect.className = slistclassopen+"";
@@ -386,25 +378,21 @@
                 onoff = true;
             }
         })
-        util.addEvent(sloneselect,"click",function(){
-            audio.playbackRate = 0.5;
-            speedselect.innerHTML="0.5X";
-        })
-        util.addEvent(sltwoselect,"click",function(){
-            audio.playbackRate = 1.0;
-            speedselect.innerHTML="正常";
-        })
-        util.addEvent(slthreeselect,"click",function(){
-            audio.playbackRate = 1.5;
-            speedselect.innerHTML="1.5X";
-        })
-        util.addEvent(slfourselect,"click",function(){
-            audio.playbackRate = 2.0;
-            speedselect.innerHTML="2.0X";
-        })
-
-        // console.log(slselect.childNodes.item(1).children)
-        // console.log(slselect)
+        if(sloneselect && sltwoselect && slthreeselect && slfourselect === 'undefined'){
+            alert(视频播放速率属性未定义);
+        }else {
+            let speedarr = ["0.5","1.0","1.5","2.0"]
+            for(let i=0;i<slschildren.length;i++){
+                slschildren[i].onclick = function(){
+                    audio.playbackRate = speedarr[i];
+                    if(audio.playbackRate === 1.0){
+                        speedselect.innerHTML = "正常";
+                    }else {
+                        speedselect.innerHTML = audio.playbackRate+"x";
+                    }
+                }
+            }
+        }
         /**
          * 视频源的playbackRate属性是显示视频源的播放速度
          */
@@ -520,6 +508,26 @@
                 rclickmenu.style="display:none";
                 onoff = true;
             }
+        })
+        
+    }
+    /**
+     * 镜像画面效果（屏幕反转）
+     * @privatemethod mrotate
+     * @autor wangqiaoqiaogithub
+     */
+    proto.bindmrotate = function(){
+        let audio = this.name;
+        let rotatebtn = ss;
+        let onoff = true;
+        util.addEvent(rotatebtn,"click",function(){
+            if(onoff == true){
+                audio.style = 'transform: rotateY(180deg)';
+                onoff = false
+            }else{
+                audio.style = null;
+                onoff = true
+            }   
         })
     }
     /** 
