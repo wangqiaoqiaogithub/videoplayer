@@ -59,6 +59,12 @@
             }
             elementName.className = classNames.join('');
         },
+        hasclass(element,className){
+            element = element || "";
+            if (className.replace(/\s/g, "").length == 0) return false; //当cls没有参数时，返回false
+            return new RegExp("" + className + "").test("" + ele.className+ "");
+
+        },
         typeofqs:function(element){
             return typeof element === "string" ? document.querySelector(element) : element;
         },
@@ -361,7 +367,7 @@
         let slistclassshut = this.options.slistclassshut;
         let speedselect = util.typeofqs(this.options.speedbtn);
         let slselect = util.typeofqs(this.options.speedlist);
-        let slschildren = slselect.childNodes.item(1).children;
+        // let slschildren = slselect.childNodes.item(1).children;
         let sloneselect = util.typeofqs(this.options.slistone);
         let sltwoselect = util.typeofqs(this.options.slisttwo);
         let slthreeselect = util.typeofqs(this.options.slistthree);
@@ -377,12 +383,13 @@
                 onoff = true;
             }
         })
-        if(sloneselect && sltwoselect && slthreeselect && slfourselect === 'undefined'){
+        if(typeof sloneselect && sltwoselect && slthreeselect && slfourselect === 'undefined'){
             alert(视频播放速率属性未定义);
         }else {
-            let speedarr = ["0.5","1.0","1.5","2.0"]
-            for(let i=0;i<slschildren.length;i++){
-                slschildren[i].onclick = function(){
+            let speedarr = ["0.5","1.0","1.5","2.0"];
+            let slsarr = [sloneselect,sltwoselect,slthreeselect,slfourselect];
+            for(let i=0;i<slsarr.length;i++){
+                slsarr[i].onclick = function(){
                     audio.playbackRate = speedarr[i];
                     if(audio.playbackRate === 1.0){
                         speedselect.innerHTML = "正常";
@@ -499,16 +506,13 @@
             event.preventDefult();//阻止事件默认
             // 监听点击右键事件
             if(onoff == true){
-                console.log(1);
                 rclickmenu.style="display:block";
                 onoff = false;
             }else{
-                console.log(2);
                 rclickmenu.style="display:none";
                 onoff = true;
             }
         })
-        
     }
     /**
      * 镜像画面效果（屏幕反转）
@@ -529,11 +533,6 @@
             }   
         })
     }
-    /** 
-     * 视频思路:
-     * 获取到this.name（视屏来源）,给this.btn添加点击事件(作用点)
-     * 对this.btn做出判断
-    */
    if (typeof exports != 'undefined' && !exports.nodeType) {
         if (typeof module != 'undefined' && !module.nodeType && module.exports) {
             exports = module.exports = Video;
