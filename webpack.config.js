@@ -4,7 +4,7 @@ let HtmlWebpackPlugin = require('html-webpack-plugin');//解析index.html文件�
 let MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports= {
     devServer: {//开发服务器的配置
-        port:3000,
+        port:3001,
         progress: true,
         contentBase: './src'
     },

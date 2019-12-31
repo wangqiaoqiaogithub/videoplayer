@@ -533,6 +533,31 @@
             }   
         })
     }
+    /**
+     * 截图功能
+     * @privatemethod screenshot
+     * @license MIT
+     */
+    proto.screenshot = function(){
+        let audio = this.name;
+        let sshotbtn = this.options.screenshotbtn;
+        let canvas = document.createElement('canvas');
+        util.addEvent(sshotbtn,'click',function(){
+            var dataURL = void 0;
+            canvas.width = audio.width;
+            canvas.height = audio.height;
+            canvas.getContext('2d').drawImage(audio,0,0,canvas.width,canvas.height);
+            dataURL = URL.createObjectURL(blob);
+            var link = document.createElement('a');
+            link.href = dataURL;
+            link.download = 'DPlayer.png';
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(dataURL);
+        })
+    }
    if (typeof exports != 'undefined' && !exports.nodeType) {
         if (typeof module != 'undefined' && !module.nodeType && module.exports) {
             exports = module.exports = Video;

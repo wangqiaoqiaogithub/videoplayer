@@ -59,8 +59,3 @@ var videoscreen = new Video('#myAudio'//确定video标签的id容器,{
   audioloadingselect: '自定义',//缓存加载视频时的loading选择器(让它去控制别的类名，来控制类名的显示隐藏)
   loadinghideclass: '自定义'//视频缓存加载完成后隐藏loading的class(这里必须是字符串的形式)
 })
-<<<<<<< HEAD
-```
-=======
-```
->>>>>>> 4acea3b9c6a5c651f0c4b853f8fec57a0d63f369
