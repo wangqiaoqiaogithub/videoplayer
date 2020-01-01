@@ -67,17 +67,13 @@
         },
         typeofqs:function(element){
             return typeof element === "string" ? document.querySelector(element) : element;
-        },
-        contextmenushow: function(clientRect,x,y){
-            // 让右键点击屏幕的菜单展示到鼠标所指的位置
-            let cRect = clientRect.getBoundingClientRect()
         }
     }
     function Videoplayer(
         btn,videoplay,videopause,
         choicefs,fullscreen,fsicon,exitfsicon,timebeat,timetotal,pipbtn,speedbtn,
         speedlist,slistclassopen,slistclassshut,slistone,slisttwo,slistthree,
-        slistfour,volumebtn,volumemouse,vmuteclass,vmediumclass,vbigclass,vcontrols,
+        slistfour,screenshotbtn,volumebtn,volumemouse,vmuteclass,vmediumclass,vbigclass,vcontrols,
         volumehead,vprogress,apcontrols,audiohead,audioprogress,aloadprogress,mousevolumedistance,
         mouseaprogressdistance,audioloadingselect,loadinghideclass,rightclickmenu
     ){
@@ -99,6 +95,7 @@
         this.slisttwo = slisttwo;
         this.slistthree = slistthree;
         this.slistfour = slistfour;
+        this.screenshotbtn = screenshotbtn;
         this.volumebtn = volumebtn;
         this.volumemouse = volumemouse;
         this.vmuteclass = vmuteclass;
@@ -137,6 +134,7 @@
         slisttwo: this.slisttwo,
         slistthree: this.slistthree,
         slistfour: this.slistfour,
+        screenshotbtn: this.screenshotbtn,
         volumebtn: this.volumebtn,
         volumemouse: this.volumemouse,
         vmuteclass: this.vmuteclass,
@@ -152,7 +150,8 @@
         mousevolumedistance: this.mousevolumedistance,
         mouseaprogressdistance: this.mouseaprogressdistance,
         audioloadingselect: this.audioloadingselect,
-        loadinghideclass: this.loadinghideclass
+        loadinghideclass: this.loadinghideclass,
+        rightclick: this.rightclickmenu
         //这里的this指向为Video
     }
     function Video(name,options){
@@ -543,19 +542,21 @@
         let sshotbtn = this.options.screenshotbtn;
         let canvas = document.createElement('canvas');
         util.addEvent(sshotbtn,'click',function(){
-            var dataURL = void 0;
-            canvas.width = audio.width;
-            canvas.height = audio.height;
+            canvas.width = audio.videoWidth;
+            canvas.height = audio.videoHeight;
             canvas.getContext('2d').drawImage(audio,0,0,canvas.width,canvas.height);
-            dataURL = URL.createObjectURL(blob);
-            var link = document.createElement('a');
-            link.href = dataURL;
-            link.download = 'DPlayer.png';
-            link.style.display = 'none';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(dataURL);
+            var dataURL = void 0;
+            canvas.toBlob(function(blob){
+                dataURL = URL.createObjectURL(blob);
+                var link = document.createElement('a');
+                link.href = dataURL;
+                link.download = 'videoPlayer.png';
+                link.style.display = 'none';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(dataURL);
+            })
         })
     }
    if (typeof exports != 'undefined' && !exports.nodeType) {
