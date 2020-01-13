@@ -151,7 +151,8 @@
         mouseaprogressdistance: this.mouseaprogressdistance,
         audioloadingselect: this.audioloadingselect,
         loadinghideclass: this.loadinghideclass,
-        rightclick: this.rightclickmenu
+        rightclick: this.rightclickmenu,
+        create:function(){}
         //这里的this指向为Video
     }
     function Video(name,options){
@@ -168,6 +169,7 @@
          * 接着在修复Video类让声明的的那个变量的constructor属性指向Video类
          */
         this.init();
+        options.create();// 回调函数（调用defaultoptions栈中函数）
     }
     var proto = Video.prototype = new Videoplayer();
     proto.constructor = Video;
